@@ -67,7 +67,7 @@ This address system cannot represent any of the IPv6 address formats - Global Un
 
 ### Sparse address space 
 
-It is 2<sup>32</sup>, which is the maximum number of endpoints that can be represented in 2 bytes - equivalent to the IPv4 address space. However, this address system inefficiently allocates the addresses for only 1,053 endpoints in this large address space. It is also inefficient attempt to emojify a 64-bit interface ID of a Unique Local Address. 
+It is 2<sup>32</sup>, which is the maximum number of endpoints that can be represented in 2 bytes - equivalent to the IPv4 address space. However, this address system inefficiently allocates the addresses for only 1,053 endpoints in its large address space. It is also inefficient attempt to emojify a 64-bit interface ID of a Unique Local Address. 
 
 ### Configure network subnets with only 4 prefixes? Well...
 
