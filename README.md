@@ -67,15 +67,15 @@ This address system cannot represent any of the IPv6 address formats - Global Un
 
 ### Sparse address space 
 
-It is 2<sup>32</sup>, which is the maximum number of endpoints that can be represented in 2 bytes - equivalent to the ipv4 address space. However, this address system inefficiently uses only 1,053 endpoints in this large address space. It is also inefficient attempt to emojify a 64-bit interface ID of a Unique Local Address. 
+It is 2<sup>32</sup>, which is the maximum number of endpoints that can be represented in 2 bytes - equivalent to the IPv4 address space. However, this address system inefficiently uses only 1,053 endpoints in this large address space. It is also inefficient attempt to emojify a 64-bit interface ID of a Unique Local Address. 
 
 ### Configure network subnets with only 4 prefixes? Well...
 
-There are only 4 network prefixes of this address system: `/32`,`/64`,`/96`,`/128`. Suppose this address system is available for private use. Since address resources are much richer compared to IPv4, network operators will be happy to assign addresses. However, this forces you to allocate subnets `/96` with 1,053 addresses for teams of less than 10 people, although the dev teams might be very welcome. 
+There are only 4 network prefixes in this address system: `/32`,`/64`,`/96`,`/128`. Suppose this address system is available for private use. Since address resources are much richer compared to IPv4, network operators will be happy to assign addresses. However, this forces you to allocate `/96` subnets with 1,053 addresses for teams of less than 10 people, although the dev teams might be very welcome. 
 
 ## Credits 
 
-Especially thanks to [@b4b4r07][b4b4r07]. Thanks to his work [emoji-cli] and [zplug], I am able to reduce the time it takes to achieve the goal of this project. 
+Especially thanks to [@b4b4r07][b4b4r07]. Thanks to his work, [emoji-cli] and [zplug], I am able to reduce the time it takes to achieve the goal of this project. 
 
 ## License 
 
