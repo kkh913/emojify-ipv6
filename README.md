@@ -33,7 +33,7 @@ echo 😀😀😀😀 | emojify-ipv6
 output:
 > f09f:9880:f09f:9880:f09f:9880:f09f:9880
 
-And vice versa with flag `-r, --reverse`
+And vice versa with flag `-r, --reverse`.
 ``` bash
 emojify-ipv6 -r f09f:9880:f09f:92af:f09f:918d:f09f:9890
 # or 
@@ -42,10 +42,20 @@ echo f09f:9880:f09f:92af:f09f:918d:f09f:9890 | emojify-ipv6 -r -
 output:
 > 😀💯👍😐
 
+Call a list of available emojis with flag `-l, --list`. 
+``` bash 
+emojify-ipv6 -l | wc -l
+```
+output:
+>    1053
+
 ## Demo 
+
+    ![](examples/ex1.gif)
 
 For [emoji-cli] to work as shown in the demo, you need to add the follwing to `.zshrc`: 
 ```
+export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 [ -f ~/emoji-cli/emoji-cli.zsh ] && source ~/emoji-cli/emoji-cli.zsh
 export EMOJI_CLI_FILTER="fzf --height 40%"
 export EMOJI_CLI_USE_EMOJI=1

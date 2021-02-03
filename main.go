@@ -32,7 +32,7 @@ This provides higher readability compared to the existing IPv6 notation.
   😀😀😀😀 <-> f09f:9880:f09f:9880:f09f:9880:f09f:9880
 	`,
 	Example: `
-	# Convert emojis to IPv6. Emoji-cli("https://github.com/b4b4r07/emoji-cli") is strongly required to run this example.
+  # Convert emojis to IPv6. Emoji-cli("https://github.com/b4b4r07/emoji-cli") is strongly required to run this example.
   echo 😀😀😀😀 | emojify-ipv6 
 
   # Reverse IPv6 to emojis 
