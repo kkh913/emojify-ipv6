@@ -53,7 +53,7 @@ export EMOJI_CLI_USE_EMOJI=1
 
 ## Emoji 
 
-An [emoji] is a character in the form of a picture, which is different from [emoticon] which is a combination of characters, and even has a different etymology. (Japanese ↔ English) The use of emoji has spread greatly due to smartphones and SNS, and is actively occupying part of the Unicode map. As of this writing, the total number of emojis in v13.1 is [3,521][1].
+An [emoji] is a character in the form of a picture, which is different from [emoticon] which is a combination of characters, and even has a different etymology. (Japanese ↔ English) The emojis have spread greatly due to smartphones and SNS, and are actively occupying part of the Unicode map. As of this writing, the total number of emojis in v13.1 is [3,521][1].
 
 ## Motivation 
 
