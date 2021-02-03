@@ -51,7 +51,7 @@ output:
 
 ## Demo 
 
-    ![](examples/ex1.gif)
+![](examples/ex1.gif)
 
 For [emoji-cli] to work as shown in the demo, you need to add the follwing to `.zshrc`: 
 ```
