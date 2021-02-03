@@ -6,6 +6,7 @@ GOVET        = $(GOCMD) vet
 GOGET        = $(GOCMD) get
 GOX          = $(GOPATH)/bin/gox
 GOGET        = $(GOCMD) get
+GOINSTALL    = $(GOCMD) install 
 
 GOX_ARGS     = -output="$(BUILD_DIR)/{{.Dir}}-{{.OS}}-{{.Arch}}" -osarch="linux/amd64 darwin/amd64"
 
@@ -36,6 +37,12 @@ clean:
 
 run: build
 	./$(BUILD_DIR)/$(BINARY_NAME)
+
+install: 
+	$(GOINSTALL) -ldflags "-X main.gitTag=`git describe --tags --abbrev=0`"
+
+uninstall:
+	rm -f $(GOPATH)/bin/$(BINARY_NAME)
 
 release:
 	${GOGET} -u github.com/mitchellh/gox

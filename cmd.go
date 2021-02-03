@@ -3,9 +3,9 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"net"
-	// "github.com/pkg/errors"
+	"github.com/pkg/errors"
 	"io"
+	"net"
 	"os"
 	"strings"
 )
@@ -32,7 +32,7 @@ func runCommand() error {
 	} else if inputData != "" {
 		return toIPv6(strings.NewReader(inputData), os.Stdout)
 	}
-	return nil
+	return errors.New("no valid operations.")
 }
 
 func isInputFromPipe() bool {
@@ -40,90 +40,61 @@ func isInputFromPipe() bool {
 	return fi.Mode()&os.ModeCharDevice == 0
 }
 
-// func getFile() (*os.File, error) {
-//   if flags.filepath == "" {
-//     return nil, errors.New("please input a file")
-//   }
-//   if !fileExists(flags.filepath) {
-//     return nil, errors.New("the file provided does not exist")
-//   }
-//   file, e := os.Open(flags.filepath)
-//   if e != nil {
-//     return nil, errors.Wrapf(e,
-//       "unable to read the file %s", flags.filepath)
-//   }
-//   return file, nil
-// }
+func processConvertEmoji(s string) (string, error) {
 
-func processConvertEmoji(s string) string {
-	// re := regexp.MustCompile(`\w+|([+-]\d)`)
-	//
-	// parts := strings.Split(s, ":")
-	//
-	// Contains := func(s []string, substr string) bool {
-	//   for _, v := range s {
-	//     if v == substr {
-	//       return true
-	//     }
-	//   }
-	//   return false
-	// }
-	//
-	// ToEmoji := func(source string) string {
-	//   for _, item := range emojiData {
-	//     if Contains(item.Aliases, source) {
-	//       return item.Emoji
-	//     }
-	//   }
-	//   return source
-	// }
-	//
-	// var ret string
-	// prev_state := false
-	//
-	// for _, part := range parts {
-	//   if len(strings.Fields(part)) == 1 && re.MatchString(part) {
-	//     toEmoji := ToEmoji(part)
-	//     if toEmoji != part {
-	//       ret = ret + toEmoji
-	//       prev_state = true
-	//     } else {
-	//       if prev_state {
-	//         ret = ret + part
-	//       } else {
-	//         ret = ret + ":" + part
-	//       }
-	//       prev_state = false
-	//     }
-	//   } else {
-	//     if prev_state {
-	//       ret = ret + part
-	//     } else {
-	//       ret = ret + ":" + part
-	//     }
-	//     prev_state = false
-	//   }
-	// }
-	//
-	// return ret[1:]
+	var rawData net.IP
+	rawData = net.ParseIP(s)
 
-	return string(net.ParseIP(s))
+	if rawData == nil {
+		return "", errors.New("Invaild IPv6 address")
+	}
 
+	Contains := func(s string) bool {
+		for _, item := range emojiData {
+			if item.Emoji == s {
+				return true
+			}
+		}
+		return false
+	}
+
+	for i := 0; i < 4; i++ {
+		emojiValue := rawData[(i * 4):(i*4 + 4)]
+		if !Contains(string(emojiValue)) {
+			return "", errors.New("There are no convertible emojis.")
+		}
+	}
+
+	return string(rawData), nil
 }
 
-func processConvertIPv6(s string) string {
+func processConvertIPv6(s string) (string, error) {
+
+	if len(s) != 16 {
+		return "", errors.New("Invalid length of emojis.")
+	}
+
 	var ipv6_addr net.IP
 
 	ipv6_addr = []byte(s)
 
-	return ipv6_addr.String()
+	return ipv6_addr.String(), nil
 }
 
 func toIPv6(r io.Reader, w io.Writer) error {
 	scanner := bufio.NewScanner(bufio.NewReader(r))
 	for scanner.Scan() {
-		_, e := fmt.Fprintln(
-			w, processConvertIPv6(scanner.Text()))
+
+		var emojis string
+		var e error
+
+		emojis, e = processConvertIPv6(scanner.Text())
+		if e != nil {
+			return e
+		}
+
+		_, e = fmt.Fprintln(
+			w, emojis)
 		if e != nil {
 			return e
 		}
@@ -134,8 +105,17 @@ func toIPv6(r io.Reader, w io.Writer) error {
 func toEmoji(r io.Reader, w io.Writer) error {
 	scanner := bufio.NewScanner(bufio.NewReader(r))
 	for scanner.Scan() {
-		_, e := fmt.Fprintln(
-			w, processConvertEmoji(scanner.Text()))
+
+		var ipv6_addr string
+		var e error
+
+		ipv6_addr, e = processConvertEmoji(scanner.Text())
+		if e != nil {
+			return e
+		}
+
+		_, e = fmt.Fprintln(
+			w, ipv6_addr)
 		if e != nil {
 			return e
 		}
