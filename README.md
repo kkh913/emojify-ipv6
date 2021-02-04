@@ -67,7 +67,7 @@ An [emoji] is a character in the form of a picture, which is different from [emo
 
 ## Motivation 
 
-[IPv6] is 16 bytes (128 bits) in size and can be easily represented by 4 emojis with a UTF-8 encoding size of 4 bytes. I am not the first pioneer to express IP addresses in a combination of emojis. [Their address system][2], which was the only one found in my research, can represent IPv4 as well as IPv6. It maps 256 emojis to 1 byte, so it can represent any IP address. However, there is arguable over the reasons for mapping numbers and emojis. In contrast, my method uses 2 byte UTF-8 encoded emojis. Thus, we can check the IPv6 address without a additional mapping table. Although it is very limited to 1,053 which is the number of emojis that can be used in this address system, it offers 286.26 times larger address space than the IPv4 address space.
+[IPv6] is 16 bytes (128 bits) in size and can be easily represented by 4 emojis with a UTF-8 encoding size of 4 bytes. I am not the first pioneer to express IP addresses in a combination of emojis. [Their address system][2], which was the only one found in my research, can represent IPv4 as well as IPv6. It maps 256 emojis to 1 byte, so it can represent any IP address. However, there is arguable over the reasons for mapping numbers and emojis. In contrast, my method uses 4 byte UTF-8 encoded emojis. Thus, we can check the IPv6 address without a additional mapping table. Although it is very limited to 1,053 which is the number of emojis that can be used in this address system, it offers 286.26 times larger address space than the IPv4 address space.
 
 ## Limitations 
 
